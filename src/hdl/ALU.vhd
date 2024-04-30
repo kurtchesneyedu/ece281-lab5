@@ -23,11 +23,12 @@
 --|
 --| ALU OPCODES:
 --|
---|     ADD     000
---|
---|
---|
---|
+--|     ADD      1000
+--|     SUBTRACT 1001
+--|     AND      0100
+--|     OR       0101
+--|     SHIFT L  0010
+--|     SHIFT R  0011
 --+----------------------------------------------------------------------------
 library ieee;
   use ieee.std_logic_1164.all;
@@ -35,21 +36,46 @@ library ieee;
 
 
 entity ALU is
--- TODO
+    Port ( i_op : in STD_LOGIC_VECTOR (3 downto 0);
+           i_A : in STD_LOGIC_VECTOR (7 downto 0);
+           i_B : in STD_LOGIC_VECTOR (7 downto 0);
+           
+           o_result : out STD_LOGIC_VECTOR (7 downto 0);
+           o_sign : out STD_LOGIC;
+           o_cout : out STD_LOGIC;
+           o_zero : out STD_LOGIC);
 end ALU;
 
 architecture behavioral of ALU is 
   
-	-- declare components and signals
-
+	signal w_andout : STD_LOGIC_VECTOR (7 downto 0);
+	signal w_orout : STD_LOGIC_VECTOR (7 downto 0);
+	signal w_arithout : STD_LOGIC_VECTOR (7 downto 0);
+	signal w_logicout : STD_LOGIC_VECTOR (7 downto 0);
+	signal w_shiftout : STD_LOGIC_VECTOR (7 downto 0);
+	signal w_result : STD_LOGIC_VECTOR (7 downto 0);
+	signal w_b_in : STD_LOGIC_VECTOR (7 downto 0);
+	signal w_cout : STD_LOGIC;
   
 begin
-	-- PORT MAPS ----------------------------------------
-
-	
-	
-	-- CONCURRENT STATEMENTS ----------------------------
-	
-	
+	-- PORT MAPS, CONCURRENT STATEMENTS ----------------------------------------
+    w_result <= w_arithout when i_op (3 downto 1) = "100";
+    w_result <= w_logicout when i_op (3 downto 1) = "010";
+    w_result <= w_shiftout when i_op (3 downto 1) = "001";
+    o_result <= w_result;
+    
+    o_sign <= w_result(7);
+    o_cout <= '1' when (i_op(3) = '1' and i_A(7) = i_B(7) and i_A(7) /= w_result(7)) else '0';                        
+    o_zero <= '1' when w_result = "00000000" else '0';
+    
+    w_b_in <= i_B when i_op(0) = '0';
+    w_b_in <= std_logic_vector(0 - signed(i_B)) when i_op(0) = '1';
+    w_arithout <= std_logic_vector(signed(i_A) + signed(w_b_in));
+    
+    w_logicout <= i_A and i_B when i_op(0) = '0';
+    w_logicout <= i_A or i_B when i_op(0) = '1';
+    
+    w_shiftout <= std_logic_vector(shift_left(unsigned(i_A), to_integer(unsigned(i_B(2 downto 0))))) when i_op(0) = '0';
+    w_shiftout <= std_logic_vector(shift_right(unsigned(i_A), to_integer(unsigned(i_B(2 downto 0))))) when i_op(0) = '1';
 	
 end behavioral;
