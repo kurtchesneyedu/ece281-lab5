@@ -34,7 +34,8 @@ entity top_basys3 is
         sw : in std_logic_vector (15 downto 0);
         
         led : out std_logic_vector(15 downto 0);
-        seg : out std_logic_vector(7 downto 0)
+        seg : out std_logic_vector(7 downto 0);
+        an : out std_logic_vector(3 downto 0)
         );
         
 end top_basys3;
@@ -86,7 +87,7 @@ architecture top_basys3_arch of top_basys3 is
                o_S : out STD_LOGIC_VECTOR (6 downto 0));
     end component sevenSegDecoder;
     
-    entity twoscomp_decimal is
+    component twoscomp_decimal is
         port (
             i_binary: in std_logic_vector(7 downto 0);
             o_negative: out std_logic;
@@ -94,12 +95,68 @@ architecture top_basys3_arch of top_basys3 is
             o_tens: out std_logic_vector(3 downto 0);
             o_ones: out std_logic_vector(3 downto 0)
         );
-    end twoscomp_decimal;
+    end component twoscomp_decimal;
 
-  
+    signal w_regA, w_regB, w_ALU, w_MUX : std_logic_vector (7 downto 0);
+    signal w_cycle, w_hund, w_tens, w_ones, w_data : std_logic_vector (3 downto 0);
+    signal w_clk_tdm, w_neg : std_logic;
+    
 begin
 	-- PORT MAPS ----------------------------------------
-
+    ALU_inst : ALU
+        Port map(
+               i_op => sw(3 downto 0),
+               i_A => w_regA,
+               i_B => w_regB,
+               
+               o_result => w_ALU,
+               o_sign => led(15),
+               o_cout => led(13),
+               o_zero => led(14)
+               );
+    
+    TDM4_inst : TDM4
+        generic map ( k_WIDTH => 4)
+        Port map ( 
+               i_clk => w_clk_tdm,
+               i_reset => btnR,
+               i_D3 => w_sign,
+               i_D2 => w_hund,
+               i_D1 => w_tens,
+               i_D0 => w_ones,
+               o_data => w_data,
+               o_sel => an
+               );
+    
+    clock_divider_inst : clock_divider
+        generic map ( k_DIV => 500000) -- 100 Hz clock
+        port map (  
+                i_clk => clk,
+                i_reset => btnR,           -- asynchronous
+                o_clk => w_clk_tdm         -- divided (slow) clock
+        );
+    
+    controller_fsm_inst : controller_fsm
+        port map ( 
+               i_reset => btnU,
+               i_adv => btnC,
+               o_cycle => w_cycle
+               );
+    
+    sevenSegDecoder_inst : sevenSegDecoder
+        port map ( 
+               i_D => w_data,
+               o_S => seg
+               );
+    
+    twoscomp_decimal_inst : twoscomp_decimal
+        port map (
+            i_binary => w_mux,
+            o_negative => w_neg,
+            o_hundreds => w_hund,
+            o_tens => w_tens,
+            o_ones=> w_ones
+        );
 	
 	
 	-- CONCURRENT STATEMENTS ----------------------------

@@ -89,5 +89,7 @@ begin
 
     c_Sg <= (not i_D(3) and i_D(2) and i_D(1) and i_D(0)) or
             (not i_D(3) and not i_D(2) and not i_D(1));
-
+            
+    o_s <= "1111110" when i_D = "1111";
+    
 end Behavioral;
