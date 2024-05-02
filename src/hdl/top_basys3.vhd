@@ -34,7 +34,7 @@ entity top_basys3 is
         sw : in std_logic_vector (15 downto 0);
         
         led : out std_logic_vector(15 downto 0);
-        seg : out std_logic_vector(7 downto 0);
+        seg : out std_logic_vector(6 downto 0);
         an : out std_logic_vector(3 downto 0)
         );
         
