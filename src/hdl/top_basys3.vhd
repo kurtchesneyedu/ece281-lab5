@@ -165,18 +165,13 @@ begin
 	-- output mux implementation
 	w_MUX <= w_ALU when w_cycle = "1000" else
 	         w_regA when w_cycle = "0010" else
-	         w_regB when w_cycle = "0100";
+	         w_regB when w_cycle = "0100" else "0001";
 	         
     -- register implementation
-    w_regANext <= sw(7 downto 0);
-    w_regBNext <= sw(7 downto 0);
-    w_regA <= w_regANext when w_cycle = "0010";
-    w_regB <= w_regBNext when w_cycle = "0100";
+    w_regANext <= "00000000" when btnR = '1' else sw(7 downto 0);
+    w_regBNext <= "00000000" when btnR = '1' else sw(7 downto 0);
     
-    w_regA <= "00000000" when btnR = '1';
-    w_regB <= "00000000" when btnR = '1';
-    w_regANext <= "00000000" when btnR = '1';
-    w_regBNext <= "00000000" when btnR = '1';
-    
+    w_regA <= "00000000" when btnR = '1' else w_regANext;
+    w_regB <= "00000000" when btnR = '1' else w_regBNext;
 	
 end top_basys3_arch;
