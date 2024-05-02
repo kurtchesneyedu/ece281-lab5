@@ -52,6 +52,6 @@ begin
                 
     o_cycle <= f_Q;
         
-    f_Q <= f_Q_next when i_adv = '1';
+    f_Q <= f_Q_next when i_adv = '1' else f_Q;
                     
 end Behavioral;

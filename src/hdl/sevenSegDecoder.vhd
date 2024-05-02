@@ -38,59 +38,19 @@ end sevenSegDecoder;
 
 architecture Behavioral of sevenSegDecoder is
 
-    signal c_Sa : std_logic:= '1';
-    signal c_Sb : std_logic:= '1';
-    signal c_Sc : std_logic:= '1';
-    signal c_Sd : std_logic:= '1';
-    signal c_Se : std_logic:= '1';
-    signal c_Sf : std_logic:= '1';
-    signal c_Sg : std_logic:= '1';
-
-begin
-
-    o_S(0) <= c_Sa;
-    o_S(1) <= c_Sb;
-    o_S(2) <= c_Sc;
-    o_S(3) <= c_Sd;
-    o_S(4) <= c_Se;
-    o_S(5) <= c_Sf;
-    o_S(6) <= c_Sg;
-    
-    c_Sa <= '1' when ((i_D = x"1") or 
-                      (i_D = x"4") or
-                      (i_D = x"B") or
-                      (i_D = x"C") or
-                      (i_D = x"D")) else '0';
-
-    c_Sb <= (not i_D(3) and i_D(2) and not i_D(1) and i_D(0)) or
-            (i_D(2) and i_D(1) and not i_D(0)) or 
-            (i_D(3) and i_D(1) and i_D(0)) or 
-            (i_D(3) and i_D(2) and not i_D(0));
-            
-    c_Sc <= (not i_D(3) and not i_D(2) and i_D(1) and not i_D(0)) or
-            (i_D(3) and i_D(2) and i_D(1)) or 
-            (i_D(3) and i_D(2) and not i_D(0));
-            
-    c_Sd <= '1' when ((i_D = x"1") or 
-                      (i_D = x"4") or
-                      (i_D = x"7") or
-                      (i_D = x"9") or
-                      (i_D = x"A") or
-                      (i_D = x"F")) else '0';
-            
-    c_Se <= (not i_D(3) and i_D(2) and not i_D(1)) or 
-            (not i_D(2) and not i_D(1) and i_D(0)) or 
-            (not i_D(3) and i_D(0));
-
-    c_Sf <= (i_D(3) and i_D(2) and not i_D(1)) or
-            (not i_D(3) and not i_D(2) and i_D(0)) or 
-            (not i_D(3) and not i_D(2) and i_D(1)) or 
-            (not i_D(3) and i_D(1) and i_D(0));
-
-    c_Sg <= (not i_D(3) and i_D(2) and i_D(1) and i_D(0)) or
-            (not i_D(3) and not i_D(2) and not i_D(1));
-            
-    o_s <= "1111110" when i_D = "1111";
-    o_s <= "1111111" when i_D = "1110";
+begin      
+    o_s <= "1111110" when i_D = "1111" else
+           
+           "0000001" when i_D = "0000" else
+           "1001111" when i_D = "0001" else
+           "0010010" when i_D = "0010" else
+           "0000110" when i_D = "0011" else
+           "1001100" when i_D = "0100" else
+           "0100100" when i_D = "0101" else
+           "0100000" when i_D = "0110" else
+           "0001111" when i_D = "0111" else
+           "0000000" when i_D = "1000" else
+           "0001100" when i_D = "1001" else
+           "1111111";
     
 end Behavioral;
