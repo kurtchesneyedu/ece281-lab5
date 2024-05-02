@@ -79,6 +79,7 @@ architecture top_basys3_arch of top_basys3 is
     component controller_fsm is
         Port ( i_reset : in STD_LOGIC;
                i_adv : in STD_LOGIC;
+               i_clk : in STD_LOGIC;
                o_cycle : out STD_LOGIC_VECTOR (3 downto 0));
     end component controller_fsm;
     
@@ -140,6 +141,7 @@ begin
         port map ( 
                i_reset => btnU,
                i_adv => btnC,
+               i_clk => w_clk_tdm,
                o_cycle => w_cycle
                );
     
