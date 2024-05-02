@@ -97,8 +97,8 @@ architecture top_basys3_arch of top_basys3 is
         );
     end component twoscomp_decimal;
 
-    signal w_regA, w_regB, w_ALU, w_MUX : std_logic_vector (7 downto 0);
-    signal w_cycle, w_hund, w_tens, w_ones, w_data : std_logic_vector (3 downto 0);
+    signal w_regA, w_regB, w_ALU, w_MUX, w_regANext, w_regBNext: std_logic_vector (7 downto 0);
+    signal w_cycle, w_sign, w_hund, w_tens, w_ones, w_data : std_logic_vector (3 downto 0);
     signal w_clk_tdm, w_neg : std_logic;
     
 begin
@@ -160,7 +160,23 @@ begin
 	
 	
 	-- CONCURRENT STATEMENTS ----------------------------
+	w_sign <= "1111" when w_neg = '1' else "1110";
 	
-	
+	-- output mux implementation
+	w_MUX <= w_ALU when w_cycle = "1000" else
+	         w_regA when w_cycle = "0010" else
+	         w_regB when w_cycle = "0100";
+	         
+    -- register implementation
+    w_regANext <= sw(7 downto 0);
+    w_regBNext <= sw(7 downto 0);
+    w_regA <= w_regANext when w_cycle = "0010";
+    w_regB <= w_regBNext when w_cycle = "0100";
+    
+    w_regA <= "00000000" when btnR = '1';
+    w_regB <= "00000000" when btnR = '1';
+    w_regANext <= "00000000" when btnR = '1';
+    w_regBNext <= "00000000" when btnR = '1';
+    
 	
 end top_basys3_arch;

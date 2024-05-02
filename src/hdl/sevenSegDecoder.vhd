@@ -91,5 +91,6 @@ begin
             (not i_D(3) and not i_D(2) and not i_D(1));
             
     o_s <= "1111110" when i_D = "1111";
+    o_s <= "1111111" when i_D = "1110";
     
 end Behavioral;
