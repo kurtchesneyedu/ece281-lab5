@@ -1,5 +1,5 @@
 --+----------------------------------------------------------------------------
---|
+--| edit for github
 --| NAMING CONVENSIONS :
 --|
 --|    xb_<port name>           = off-chip bidirectional port ( _pads file )
