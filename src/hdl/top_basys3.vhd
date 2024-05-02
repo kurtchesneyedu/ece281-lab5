@@ -165,7 +165,7 @@ begin
 	-- output mux implementation
 	w_MUX <= w_ALU when w_cycle = "1000" else
 	         w_regA when w_cycle = "0010" else
-	         w_regB when w_cycle = "0100" else "0001";
+	         w_regB when w_cycle = "0100" else "00000000";
 	         
     -- register implementation
     w_regANext <= "00000000" when btnR = '1' else sw(7 downto 0);
