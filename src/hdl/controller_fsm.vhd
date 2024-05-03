@@ -58,11 +58,10 @@ begin
     
     register_proc : process (i_adv)
     begin
-        if (i_reset = '1') then
-            f_Q <= "0001";
-        end if;
         
-       if rising_edge(i_adv) then
+       if (i_reset = '1') then
+            f_Q <= "0001";
+       elsif rising_edge(i_adv) then
             f_Q <= f_Q_next;
        else
             f_Q <= f_Q;    -- next state becomes current state
