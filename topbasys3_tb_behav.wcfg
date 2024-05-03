@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="topbasys3_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="topbasys3_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="20500001fs"></ZoomEndTime>
+      <Cursor1Time time="7000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="125"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="27" />
+   <wvobject fp_name="/topbasys3_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/w_sw" type="array">
+      <obj_property name="ElementShortName">w_sw[15:0]</obj_property>
+      <obj_property name="ObjectShortName">w_sw[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/w_btnU" type="logic">
+      <obj_property name="ElementShortName">w_btnU</obj_property>
+      <obj_property name="ObjectShortName">w_btnU</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/w_btnC" type="logic">
+      <obj_property name="ElementShortName">w_btnC</obj_property>
+      <obj_property name="ObjectShortName">w_btnC</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/w_btnR" type="logic">
+      <obj_property name="ElementShortName">w_btnR</obj_property>
+      <obj_property name="ObjectShortName">w_btnR</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/w_led" type="array">
+      <obj_property name="ElementShortName">w_led[15:0]</obj_property>
+      <obj_property name="ObjectShortName">w_led[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/w_seg" type="array">
+      <obj_property name="ElementShortName">w_seg[6:0]</obj_property>
+      <obj_property name="ObjectShortName">w_seg[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/w_an" type="array">
+      <obj_property name="ElementShortName">w_an[3:0]</obj_property>
+      <obj_property name="ObjectShortName">w_an[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/k_clk_period" type="other">
+      <obj_property name="ElementShortName">k_clk_period</obj_property>
+      <obj_property name="ObjectShortName">k_clk_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/led" type="array">
+      <obj_property name="ElementShortName">led[15:0]</obj_property>
+      <obj_property name="ObjectShortName">led[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/seg" type="array">
+      <obj_property name="ElementShortName">seg[6:0]</obj_property>
+      <obj_property name="ObjectShortName">seg[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/an" type="array">
+      <obj_property name="ElementShortName">an[3:0]</obj_property>
+      <obj_property name="ObjectShortName">an[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_regA" type="array">
+      <obj_property name="ElementShortName">w_regA[7:0]</obj_property>
+      <obj_property name="ObjectShortName">w_regA[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_regB" type="array">
+      <obj_property name="ElementShortName">w_regB[7:0]</obj_property>
+      <obj_property name="ObjectShortName">w_regB[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_ALU" type="array">
+      <obj_property name="ElementShortName">w_ALU[7:0]</obj_property>
+      <obj_property name="ObjectShortName">w_ALU[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_MUX" type="array">
+      <obj_property name="ElementShortName">w_MUX[7:0]</obj_property>
+      <obj_property name="ObjectShortName">w_MUX[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_regANext" type="array">
+      <obj_property name="ElementShortName">w_regANext[7:0]</obj_property>
+      <obj_property name="ObjectShortName">w_regANext[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_regBNext" type="array">
+      <obj_property name="ElementShortName">w_regBNext[7:0]</obj_property>
+      <obj_property name="ObjectShortName">w_regBNext[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_cycle" type="array">
+      <obj_property name="ElementShortName">w_cycle[3:0]</obj_property>
+      <obj_property name="ObjectShortName">w_cycle[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_sign" type="array">
+      <obj_property name="ElementShortName">w_sign[3:0]</obj_property>
+      <obj_property name="ObjectShortName">w_sign[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_hund" type="array">
+      <obj_property name="ElementShortName">w_hund[3:0]</obj_property>
+      <obj_property name="ObjectShortName">w_hund[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_tens" type="array">
+      <obj_property name="ElementShortName">w_tens[3:0]</obj_property>
+      <obj_property name="ObjectShortName">w_tens[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_ones" type="array">
+      <obj_property name="ElementShortName">w_ones[3:0]</obj_property>
+      <obj_property name="ObjectShortName">w_ones[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_data" type="array">
+      <obj_property name="ElementShortName">w_data[3:0]</obj_property>
+      <obj_property name="ObjectShortName">w_data[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_clk_tdm" type="logic">
+      <obj_property name="ElementShortName">w_clk_tdm</obj_property>
+      <obj_property name="ObjectShortName">w_clk_tdm</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_neg" type="logic">
+      <obj_property name="ElementShortName">w_neg</obj_property>
+      <obj_property name="ObjectShortName">w_neg</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/sw" type="array">
+      <obj_property name="ElementShortName">sw[15:0]</obj_property>
+      <obj_property name="ObjectShortName">sw[15:0]</obj_property>
+   </wvobject>
+</wave_config>

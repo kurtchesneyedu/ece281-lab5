@@ -47,15 +47,12 @@ entity ALU is
 end ALU;
 
 architecture behavioral of ALU is 
-  
-	signal w_andout : STD_LOGIC_VECTOR (7 downto 0);
-	signal w_orout : STD_LOGIC_VECTOR (7 downto 0);
+
 	signal w_arithout : STD_LOGIC_VECTOR (7 downto 0);
 	signal w_logicout : STD_LOGIC_VECTOR (7 downto 0);
 	signal w_shiftout : STD_LOGIC_VECTOR (7 downto 0);
 	signal w_result : STD_LOGIC_VECTOR (7 downto 0);
 	signal w_b_in : STD_LOGIC_VECTOR (7 downto 0);
-	signal w_cout : STD_LOGIC;
   
 begin
 	-- PORT MAPS, CONCURRENT STATEMENTS ----------------------------------------
