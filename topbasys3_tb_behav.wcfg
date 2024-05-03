@@ -11,14 +11,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="93.501 ns"></ZoomEndTime>
-      <Cursor1Time time="46.900 ns"></Cursor1Time>
+      <ZoomEndTime time="2,672.001 ns"></ZoomEndTime>
+      <Cursor1Time time="0.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="143"></NameColumnWidth>
+      <NameColumnWidth column_width="128"></NameColumnWidth>
       <ValueColumnWidth column_width="72"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="36" />
+   <WVObjectSize size="39" />
    <wvobject fp_name="/topbasys3_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -86,7 +86,6 @@
    <wvobject fp_name="/topbasys3_tb/uut_inst/w_MUX" type="array">
       <obj_property name="ElementShortName">w_MUX[7:0]</obj_property>
       <obj_property name="ObjectShortName">w_MUX[7:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/topbasys3_tb/uut_inst/w_regANext" type="array">
       <obj_property name="ElementShortName">w_regANext[7:0]</obj_property>
@@ -163,5 +162,17 @@
    <wvobject fp_name="/topbasys3_tb/uut_inst/TDM4_inst/k_WIDTH" type="other">
       <obj_property name="ElementShortName">k_WIDTH</obj_property>
       <obj_property name="ObjectShortName">k_WIDTH</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/ALU_inst/i_op" type="array">
+      <obj_property name="ElementShortName">i_op[3:0]</obj_property>
+      <obj_property name="ObjectShortName">i_op[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/ALU_inst/i_A" type="array">
+      <obj_property name="ElementShortName">i_A[7:0]</obj_property>
+      <obj_property name="ObjectShortName">i_A[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/ALU_inst/i_B" type="array">
+      <obj_property name="ElementShortName">i_B[7:0]</obj_property>
+      <obj_property name="ObjectShortName">i_B[7:0]</obj_property>
    </wvobject>
 </wave_config>

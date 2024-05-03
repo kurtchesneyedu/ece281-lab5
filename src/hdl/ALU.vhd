@@ -58,15 +58,16 @@ begin
 	-- PORT MAPS, CONCURRENT STATEMENTS ----------------------------------------
     w_result <= w_arithout when i_op (3 downto 1) = "100" else
                 w_logicout when i_op (3 downto 1) = "010" else
-                w_shiftout;
+                w_shiftout when i_op (3 downto 1) = "001" else
+                "00000000";
     o_result <= w_result;
     
-    o_sign <= w_result(7);
+    o_sign <= '1' when w_result(7) = '1' else '0';
     o_cout <= '1' when (i_op(3) = '1' and i_A(7) = i_B(7) and i_A(7) /= w_result(7)) else '0';                        
     o_zero <= '1' when w_result = "00000000" else '0';
     
-    w_b_in <= i_B when i_op(0) = '0' else
-              std_logic_vector(0 - signed(i_B));
+    w_b_in <= i_B when i_op(0) = '0' else std_logic_vector(0 - signed(i_B));
+    
     w_arithout <= std_logic_vector(signed(i_A) + signed(w_b_in));
     
     w_logicout <= (i_A and i_B) when i_op(0) = '0' else (i_A or i_B);
