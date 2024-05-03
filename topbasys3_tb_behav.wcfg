@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="20500001fs"></ZoomEndTime>
-      <Cursor1Time time="7000fs"></Cursor1Time>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="93.501 ns"></ZoomEndTime>
+      <Cursor1Time time="46.900 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="125"></NameColumnWidth>
-      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+      <NameColumnWidth column_width="143"></NameColumnWidth>
+      <ValueColumnWidth column_width="72"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="27" />
+   <WVObjectSize size="36" />
    <wvobject fp_name="/topbasys3_tb/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -26,6 +26,10 @@
    <wvobject fp_name="/topbasys3_tb/w_sw" type="array">
       <obj_property name="ElementShortName">w_sw[15:0]</obj_property>
       <obj_property name="ObjectShortName">w_sw[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/w_btnR" type="logic">
+      <obj_property name="ElementShortName">w_btnR</obj_property>
+      <obj_property name="ObjectShortName">w_btnR</obj_property>
    </wvobject>
    <wvobject fp_name="/topbasys3_tb/w_btnU" type="logic">
       <obj_property name="ElementShortName">w_btnU</obj_property>
@@ -35,9 +39,17 @@
       <obj_property name="ElementShortName">w_btnC</obj_property>
       <obj_property name="ObjectShortName">w_btnC</obj_property>
    </wvobject>
-   <wvobject fp_name="/topbasys3_tb/w_btnR" type="logic">
-      <obj_property name="ElementShortName">w_btnR</obj_property>
-      <obj_property name="ObjectShortName">w_btnR</obj_property>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_cycle" type="array">
+      <obj_property name="ElementShortName">w_cycle[3:0]</obj_property>
+      <obj_property name="ObjectShortName">w_cycle[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_regA" type="array">
+      <obj_property name="ElementShortName">w_regA[7:0]</obj_property>
+      <obj_property name="ObjectShortName">w_regA[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/w_regB" type="array">
+      <obj_property name="ElementShortName">w_regB[7:0]</obj_property>
+      <obj_property name="ObjectShortName">w_regB[7:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/topbasys3_tb/w_led" type="array">
       <obj_property name="ElementShortName">w_led[15:0]</obj_property>
@@ -67,14 +79,6 @@
       <obj_property name="ElementShortName">an[3:0]</obj_property>
       <obj_property name="ObjectShortName">an[3:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/topbasys3_tb/uut_inst/w_regA" type="array">
-      <obj_property name="ElementShortName">w_regA[7:0]</obj_property>
-      <obj_property name="ObjectShortName">w_regA[7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/topbasys3_tb/uut_inst/w_regB" type="array">
-      <obj_property name="ElementShortName">w_regB[7:0]</obj_property>
-      <obj_property name="ObjectShortName">w_regB[7:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/topbasys3_tb/uut_inst/w_ALU" type="array">
       <obj_property name="ElementShortName">w_ALU[7:0]</obj_property>
       <obj_property name="ObjectShortName">w_ALU[7:0]</obj_property>
@@ -82,6 +86,7 @@
    <wvobject fp_name="/topbasys3_tb/uut_inst/w_MUX" type="array">
       <obj_property name="ElementShortName">w_MUX[7:0]</obj_property>
       <obj_property name="ObjectShortName">w_MUX[7:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/topbasys3_tb/uut_inst/w_regANext" type="array">
       <obj_property name="ElementShortName">w_regANext[7:0]</obj_property>
@@ -90,10 +95,6 @@
    <wvobject fp_name="/topbasys3_tb/uut_inst/w_regBNext" type="array">
       <obj_property name="ElementShortName">w_regBNext[7:0]</obj_property>
       <obj_property name="ObjectShortName">w_regBNext[7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/topbasys3_tb/uut_inst/w_cycle" type="array">
-      <obj_property name="ElementShortName">w_cycle[3:0]</obj_property>
-      <obj_property name="ObjectShortName">w_cycle[3:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/topbasys3_tb/uut_inst/w_sign" type="array">
       <obj_property name="ElementShortName">w_sign[3:0]</obj_property>
@@ -123,8 +124,44 @@
       <obj_property name="ElementShortName">w_neg</obj_property>
       <obj_property name="ObjectShortName">w_neg</obj_property>
    </wvobject>
-   <wvobject fp_name="/topbasys3_tb/uut_inst/sw" type="array">
-      <obj_property name="ElementShortName">sw[15:0]</obj_property>
-      <obj_property name="ObjectShortName">sw[15:0]</obj_property>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/TDM4_inst/i_clk" type="logic">
+      <obj_property name="ElementShortName">i_clk</obj_property>
+      <obj_property name="ObjectShortName">i_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/TDM4_inst/i_reset" type="logic">
+      <obj_property name="ElementShortName">i_reset</obj_property>
+      <obj_property name="ObjectShortName">i_reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/TDM4_inst/i_D3" type="array">
+      <obj_property name="ElementShortName">i_D3[3:0]</obj_property>
+      <obj_property name="ObjectShortName">i_D3[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/TDM4_inst/i_D2" type="array">
+      <obj_property name="ElementShortName">i_D2[3:0]</obj_property>
+      <obj_property name="ObjectShortName">i_D2[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/TDM4_inst/i_D1" type="array">
+      <obj_property name="ElementShortName">i_D1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">i_D1[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/TDM4_inst/i_D0" type="array">
+      <obj_property name="ElementShortName">i_D0[3:0]</obj_property>
+      <obj_property name="ObjectShortName">i_D0[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/TDM4_inst/o_data" type="array">
+      <obj_property name="ElementShortName">o_data[3:0]</obj_property>
+      <obj_property name="ObjectShortName">o_data[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/TDM4_inst/o_sel" type="array">
+      <obj_property name="ElementShortName">o_sel[3:0]</obj_property>
+      <obj_property name="ObjectShortName">o_sel[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/TDM4_inst/f_sel" type="array">
+      <obj_property name="ElementShortName">f_sel[1:0]</obj_property>
+      <obj_property name="ObjectShortName">f_sel[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/topbasys3_tb/uut_inst/TDM4_inst/k_WIDTH" type="other">
+      <obj_property name="ElementShortName">k_WIDTH</obj_property>
+      <obj_property name="ObjectShortName">k_WIDTH</obj_property>
    </wvobject>
 </wave_config>

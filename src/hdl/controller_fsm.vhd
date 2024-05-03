@@ -34,13 +34,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity controller_fsm is
     Port ( i_reset : in STD_LOGIC;
            i_adv : in STD_LOGIC;
-           i_clk : in STD_LOGIC;
            o_cycle : out STD_LOGIC_VECTOR (3 downto 0));
 end controller_fsm;
 
 architecture Behavioral of controller_fsm is
     
-    signal f_Q, f_Q_next : std_logic_vector (3 downto 0);
+    signal f_Q : std_logic_vector (3 downto 0) := "0001";
+    signal f_Q_next : std_logic_vector (3 downto 0);
     
 begin
 
@@ -48,22 +48,26 @@ begin
                 "0100" when f_Q = "0010" else
                 "1000" when f_Q = "0100" else
                 "0001" when f_Q = "1000" else
-                f_Q;
+                "0001";
                 
-    o_cycle <= f_Q;
+    o_cycle <= "0010" when f_Q = "0010" else
+               "0100" when f_Q = "0100" else
+               "1000" when f_Q = "1000" else
+               "0001" when f_Q = "0001" else
+               "0001";
     
-    register_proc : process (i_clk)
+    register_proc : process (i_adv)
     begin
-        if rising_edge(i_clk) then
-            if (i_reset = '1') then
-                f_Q <= "0001";    -- reset on rising edge
-            elsif (i_adv = '1') then
-                f_Q <= f_Q_next;    -- next state becomes current state
-            end if;         -- floor stays the same
+        if (i_reset = '1') then
+            f_Q <= "0001";
         end if;
         
-        -- if elevator is enabled, advance floors
-        -- if not enabled, stay at current floor
+       if rising_edge(i_adv) then
+            f_Q <= f_Q_next;
+       else
+            f_Q <= f_Q;    -- next state becomes current state
+       end if;         -- floor stays the same
+
     
     end process register_proc;
                     

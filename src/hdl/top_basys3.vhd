@@ -79,7 +79,6 @@ architecture top_basys3_arch of top_basys3 is
     component controller_fsm is
         Port ( i_reset : in STD_LOGIC;
                i_adv : in STD_LOGIC;
-               i_clk : in STD_LOGIC;
                o_cycle : out STD_LOGIC_VECTOR (3 downto 0));
     end component controller_fsm;
     
@@ -141,7 +140,6 @@ begin
         port map ( 
                i_reset => btnU,
                i_adv => btnC,
-               i_clk => w_clk_tdm,
                o_cycle => w_cycle
                );
     
@@ -162,18 +160,38 @@ begin
 	
 	
 	-- CONCURRENT STATEMENTS ----------------------------
-	w_sign <= "1111" when w_neg = '1' else "1110";
+	w_sign <= "1111" when w_neg = '1' else "0000";
 	
 	-- output mux implementation
 	w_MUX <= w_ALU when w_cycle = "1000" else
 	         w_regA when w_cycle = "0010" else
 	         w_regB when w_cycle = "0100" else "00000000";
-	         
+	                
     -- register implementation
-    w_regANext <= "00000000" when btnR = '1' else sw(7 downto 0);
-    w_regBNext <= "00000000" when btnR = '1' else sw(7 downto 0);
+    w_regANext <= sw(7 downto 0);
     
-    w_regA <= "00000000" when btnR = '1' else w_regANext;
-    w_regB <= "00000000" when btnR = '1' else w_regBNext;
+    registerA_proc : process (w_cycle(1))
+    begin
+        if btnR = '1' then
+            w_regA <= "00000000";
+        elsif (rising_edge(w_cycle(1))) then
+            w_regA <= w_regANext;
+        else
+            w_regA <= w_regA;
+        end if;
+    end process registerA_proc;
+    
+    w_regBNext <= sw(7 downto 0);
+    
+    registerB_proc : process (w_cycle(2))
+    begin
+        if btnR = '1' then
+            w_regB <= "00000000";
+        elsif (rising_edge(w_cycle(2))) then
+            w_regB <= w_regBNext;
+        else
+            w_regB <= w_regB;
+        end if;
+    end process registerB_proc;
 	
 end top_basys3_arch;
