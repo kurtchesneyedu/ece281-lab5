@@ -131,7 +131,7 @@ begin
                );
     
     clock_divider_inst : clock_divider
-        generic map ( k_DIV => 500000) -- 100 Hz clock
+        generic map ( k_DIV => 250000) -- 200 Hz clock
         port map (  
                 i_clk => clk,
                 i_reset => btnR,           -- asynchronous
