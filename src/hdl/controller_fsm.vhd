@@ -55,10 +55,10 @@ begin
                 "000" when f_Q = "111" and i_adv = '0' else
                 f_Q;
                 
-    o_cycle <= "0001" when f_Q = "000" else
-               "0010" when f_Q = "010" else
-               "0100" when f_Q = "100" else
-               "1000" when f_Q = "110" else
+    o_cycle <= "0001" when f_Q = "000" or f_Q = "001" else
+               "0010" when f_Q = "010" or f_Q = "011" else
+               "0100" when f_Q = "100" or f_Q = "101" else
+               "1000" when f_Q = "110" or f_Q = "111" else
                "0001";
     
     register_proc : process (i_clk)

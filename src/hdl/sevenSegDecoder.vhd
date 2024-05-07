@@ -39,8 +39,7 @@ end sevenSegDecoder;
 architecture Behavioral of sevenSegDecoder is
 
 begin      
-    o_s <= "1111110" when i_D = "1111" else
-           "1111111" when i_D = "1110" else
+    o_s <= "0111111" when i_D = "1111" else -- negative sign
            
            -- "gfedcba"
            "1000000" when i_D = "0000" else

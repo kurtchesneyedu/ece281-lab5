@@ -101,7 +101,7 @@ architecture top_basys3_arch of top_basys3 is
     signal w_regA, w_regB : std_logic_vector (7 downto 0) := "00000000";
     signal w_ALU, w_MUX: std_logic_vector (7 downto 0);
     signal w_cycle, w_sign, w_hund, w_tens, w_ones, w_data : std_logic_vector (3 downto 0);
-    signal w_clk_tdm, w_neg : std_logic;
+    signal w_clk_tdm, w_clk_adv, w_neg : std_logic;
     
 begin
 	-- PORT MAPS ----------------------------------------
@@ -138,11 +138,19 @@ begin
                 o_clk => w_clk_tdm         -- divided (slow) clock
         );
     
+    clock_divider_adv_inst : clock_divider
+        generic map ( k_DIV => 3333333) -- 15 Hz clock
+        port map (  
+                i_clk => clk,
+                i_reset => btnR,           -- asynchronous
+                o_clk => w_clk_adv         -- divided (slow) clock
+        );
+    
     controller_fsm_inst : controller_fsm
         port map ( 
                i_reset => btnU,
                i_adv => btnC,
-               i_clk => clk,
+               i_clk => w_clk_adv,
                o_cycle => w_cycle
                );
     
