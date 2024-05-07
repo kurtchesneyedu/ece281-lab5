@@ -79,6 +79,7 @@ architecture top_basys3_arch of top_basys3 is
     component controller_fsm is
         Port ( i_reset : in STD_LOGIC;
                i_adv : in STD_LOGIC;
+               i_clk : in STD_LOGIC;
                o_cycle : out STD_LOGIC_VECTOR (3 downto 0));
     end component controller_fsm;
     
@@ -98,7 +99,7 @@ architecture top_basys3_arch of top_basys3 is
     end component twoscomp_decimal;
 
     signal w_regA, w_regB : std_logic_vector (7 downto 0) := "00000000";
-    signal w_ALU, w_MUX, w_regANext, w_regBNext: std_logic_vector (7 downto 0);
+    signal w_ALU, w_MUX: std_logic_vector (7 downto 0);
     signal w_cycle, w_sign, w_hund, w_tens, w_ones, w_data : std_logic_vector (3 downto 0);
     signal w_clk_tdm, w_neg : std_logic;
     
@@ -141,6 +142,7 @@ begin
         port map ( 
                i_reset => btnU,
                i_adv => btnC,
+               i_clk => clk,
                o_cycle => w_cycle
                );
     
@@ -171,30 +173,8 @@ begin
 	         w_regB when w_cycle = "0100" else "00000000";
 	                
     -- register implementation
-    w_regANext <= sw(7 downto 0);
     
-    registerA_proc : process (w_cycle(1))
-    begin
-        if btnR = '1' then
-            w_regA <= "00000000";
-        elsif (rising_edge(w_cycle(1))) then
-            w_regA <= w_regANext;
-        else
-            w_regA <= w_regA;
-        end if;
-    end process registerA_proc;
-    
-    w_regBNext <= sw(7 downto 0);
-    
-    registerB_proc : process (w_cycle(2))
-    begin
-        if btnR = '1' then
-            w_regB <= "00000000";
-        elsif (rising_edge(w_cycle(2))) then
-            w_regB <= w_regBNext;
-        else
-            w_regB <= w_regB;
-        end if;
-    end process registerB_proc;
+    w_regA <= sw(7 downto 0) when w_cycle = "0010" else w_regA;
+    w_regB <= sw(7 downto 0) when w_cycle = "0100" else w_regB;
 	
 end top_basys3_arch;
